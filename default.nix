@@ -27,25 +27,49 @@ let
         echo $uuid 
         echo $uuid | ${gnused}/bin/sed "s/o/0/g;s/i/1/g;s/l/1/g;s/s/5/g;s/t/7/g"
     '';
-in stdenv.mkDerivation rec {
-    name = "vanity-uuid";
-    src = ./.;
 
-    buildInputs = [ 
-        gnugrep
-        gnused
-        coreutils
+    vanity-uuid = stdenv.mkDerivation {
+        pname = "vanity-uuid";
+        version = "0.0.1";
 
-        hexwords 
-        vanity-uuid4
-        vanity-uuid-nospec
-    ];
+        src = ./.;
 
-    installPhase = ''
-        mkdir -p $out/bin/
+        buildInputs = [ 
+            gnugrep
+            gnused
+            coreutils
 
-        cp hexwords.txt $out/bin/
-        cp ${vanity-uuid4}/bin/vanity-uuid4 $out/bin/
-        cp ${vanity-uuid-nospec}/bin/vanity-uuid-nospec $out/bin/
-    '';
+            hexwords 
+            vanity-uuid4
+            vanity-uuid-nospec
+        ];
+
+        installPhase = ''
+            mkdir -p $out/bin/
+
+            cp hexwords.txt $out/bin/
+            cp ${vanity-uuid4}/bin/vanity-uuid4 $out/bin/
+            cp ${vanity-uuid-nospec}/bin/vanity-uuid-nospec $out/bin/
+
+            # cp ${vanity-uuid4}/bin/vanity-uuid4 $out/bin/vanity-uuid
+        '';
+    };
+
+    nix-bundle-src = builtins.fetchGit {
+        url = "https://github.com/matthewbauer/nix-bundle";
+        ref = "v0.3.0";
+    };
+    nix-bundle-arx = (import "${nix-bundle-src}/default.nix" {});
+    nix-bundle-appimg = (import "${nix-bundle-src}/appimage-top.nix" {});
+in vanity-uuid // {
+    arx = nix-bundle-arx.nix-bootstrap {
+        target = vanity-uuid;
+        run = "/bin/vanity-uuid4";
+    };
+    appimg = nix-bundle-appimg.appimage (
+        nix-bundle-appimg.appdir {
+            name = "vanity-uuid";
+            target = vanity-uuid;
+        }
+    );
 }
