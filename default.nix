@@ -2,7 +2,7 @@ with import <nixpkgs> {};
 
 let
     hexwords = pkgs.writeShellScriptBin "hexwords" ''
-        ${coreutils}/bin/cat english-words/words.txt | ${coreutils}/bin/tr '[:upper:]' '[:lower:]' | ${coreutils}/bin/tr --delete --complement '[:alnum:]\n' | ${gnugrep}/bin/grep -E "^(for|o|i|l|s|t|g|a|b|c|d|e|f|0|1|2|3|4|5|6|7|8|9|-|')*$" | ${coreutils}/bin/sort | ${coreutils}/bin/uniq
+        ${coreutils}/bin/cat english-words/words.txt | ${coreutils}/bin/tr '[:upper:]' '[:lower:]' | ${gnugrep}/bin/grep -E "^(for|o|i|l|s|t|a|b|c|d|e|f|0|1|2|3|4|5|6|7|8|9|-|')*$" | ${coreutils}/bin/tr --delete --complement '[:alnum:]\n' | ${coreutils}/bin/sort | ${coreutils}/bin/uniq
     '';
     # ''$ escapes $ to avoid ${}
     vanity-uuid4 = pkgs.writeShellScriptBin "vanity-uuid4" ''
