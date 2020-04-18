@@ -13,8 +13,8 @@ let
         uuid4=$(${gnugrep}/bin/grep -E "^.{12}$" "''${BASH_SOURCE%/*}/hexwords.txt" | ${coreutils}/bin/shuf -n 1)
         uuid=$uuid0-$uuid1-$uuid2-$uuid3-$uuid4
 
-        echo $uuid 
-        echo $uuid | ${gnused}/bin/sed "s/o/0/g;s/i/1/g;s/l/1/g;s/s/5/g;s/t/7/g"
+        echo "$uuid" 
+        echo "$uuid" | ${gnused}/bin/sed "s/o/0/g;s/i/1/g;s/l/1/g;s/s/5/g;s/t/7/g"
     '';
     vanity-uuid-nospec = pkgs.writeShellScriptBin "vanity-uuid-nospec" ''
         uuid0=$(${gnugrep}/bin/grep -E "^.{8}$" "''${BASH_SOURCE%/*}/hexwords.txt" | ${coreutils}/bin/shuf -n 1)
@@ -24,8 +24,8 @@ let
         uuid4=$(${gnugrep}/bin/grep -E "^.{12}$" "''${BASH_SOURCE%/*}/hexwords.txt" | ${coreutils}/bin/shuf -n 1)
         uuid=$uuid0-$uuid1-$uuid2-$uuid3-$uuid4
 
-        echo $uuid 
-        echo $uuid | ${gnused}/bin/sed "s/o/0/g;s/i/1/g;s/l/1/g;s/s/5/g;s/t/7/g"
+        echo "$uuid" 
+        echo "$uuid" | ${gnused}/bin/sed "s/o/0/g;s/i/1/g;s/l/1/g;s/s/5/g;s/t/7/g"
     '';
 
     vanity-uuid = stdenv.mkDerivation {
