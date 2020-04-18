@@ -9,8 +9,8 @@ Just clone this repository or download the release and run `./vanity-uuid{4,-nos
 * Install [`nix`](https://nixos.org/nix/).  
 * Basically everything is in [default.nix](./default.nix), because this repo is basically a practice for understanding `nixpkgs`.  
 * Create single file binaries that are [supposedly 100% crossplatform](https://github.com/matthewbauer/nix-bundle) using:
-    * `nix-build -A vanity-uuid4-arx && cp $(readlink result) vanity-uuid4-arx`
-    * `nix-build -A vanity-uuid-nospec-arx && cp $(readlink result) vanity-uuid-nospec-arx`
+    * `nix-build -A vanity-uuid4-arx && cp $(readlink result) bin/arx/vanity-uuid4-arx`
+    * `nix-build -A vanity-uuid-nospec-arx && cp $(readlink result) bin/arx/vanity-uuid-nospec-arx`
 
 ## "Inspiration"
 

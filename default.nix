@@ -46,8 +46,7 @@ let
             mkdir -p $out/share/applications/
 
             cp hexwords.txt $out/bin/
-            cp vanity-uuid4.desktop $out/share/applications/
-
+            
             cp ${vanity-uuid4}/bin/vanity-uuid4 $out/bin/
             cp ${vanity-uuid-nospec}/bin/vanity-uuid-nospec $out/bin/
 
