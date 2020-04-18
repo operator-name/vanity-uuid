@@ -1,9 +1,0 @@
-[Desktop Entry]
-Type=Application
-Version=1.0
-Name=vanity-uuid4-appimg
-Comment=Generate readable uuidv4s
-Path=/opt/vanity-uuid
-Exec=vanity-uuid4
-# Describes whether this application needs to be run in a terminal or not
-Terminal=true
