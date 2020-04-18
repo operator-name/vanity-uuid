@@ -62,9 +62,13 @@ let
     nix-bundle-arx = (import "${nix-bundle-src}/default.nix" {});
     nix-bundle-appimg = (import "${nix-bundle-src}/appimage-top.nix" {});
 in vanity-uuid // {
-    arx = nix-bundle-arx.nix-bootstrap {
+    vanity-uuid4-arx = nix-bundle-arx.nix-bootstrap {
         target = vanity-uuid;
         run = "/bin/vanity-uuid4";
+    };
+    vanity-uuid-nospec-arx  = nix-bundle-arx.nix-bootstrap {
+        target = vanity-uuid;
+        run = "/bin/vanity-uuid-nospec";
     };
     appimg = nix-bundle-appimg.appimage (
         nix-bundle-appimg.appdir {
