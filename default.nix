@@ -35,10 +35,7 @@ let
         src = ./.;
 
         buildInputs = [ 
-            gnugrep
-            gnused
-            coreutils
-
+            # git submodule init && git submodule update && hexwords > hexwords.txt
             hexwords 
             vanity-uuid4
             vanity-uuid-nospec
@@ -46,8 +43,11 @@ let
 
         installPhase = ''
             mkdir -p $out/bin/
+            mkdir -p $out/share/applications/
 
             cp hexwords.txt $out/bin/
+            cp vanity-uuid4.desktop $out/share/applications/
+
             cp ${vanity-uuid4}/bin/vanity-uuid4 $out/bin/
             cp ${vanity-uuid-nospec}/bin/vanity-uuid-nospec $out/bin/
 
