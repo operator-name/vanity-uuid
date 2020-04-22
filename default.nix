@@ -56,7 +56,7 @@ let
 
     nix-bundle-src = builtins.fetchGit {
         url = "https://github.com/matthewbauer/nix-bundle";
-        ref = "master";
+        rev = "89185dbd8f3c72c2d456da93c2ddfcbcf1e42b4b";
     };
     nix-bundle-arx = (import "${nix-bundle-src}/default.nix" {});
     nix-bundle-appimg = (import "${nix-bundle-src}/appimage-top.nix" {});
